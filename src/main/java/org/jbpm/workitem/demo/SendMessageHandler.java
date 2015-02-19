@@ -19,9 +19,9 @@ public class SendMessageHandler extends AbstractLogOrThrowWorkItemHandler {
 	private KieSession ksession;
 	private SendMessage sendMessage;
 	public static final String THIS_MESSAGE = "messageIn";
-	public static final String THIS_INCIDENCE = "incidence";
+	public static final String THIS_INCIDENCE = "incidenceSignal";
 	public static final String THIS_RESUME = "resumeTask";
-	
+	public static final String THIS_DEFAULT_INCIDENCE_SIGNAL = "review";
 	
 	
 	@Override
@@ -64,7 +64,7 @@ public class SendMessageHandler extends AbstractLogOrThrowWorkItemHandler {
 				output.put("status", "Fail");  
 				ksession.getWorkItemManager().completeWorkItem(id, output);
 				if (incidence == null) {
-					incidence=THIS_INCIDENCE;
+					incidence=THIS_DEFAULT_INCIDENCE_SIGNAL;
 				}
 				ksession.signalEvent(incidence, new String(e.getMessage()));			
 			}
